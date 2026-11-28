@@ -427,3 +427,7 @@ FodyWeavers.xsd
 
 coveragereport/
 TestResults/
+
+# Coverage output
+coveragereport*/
+TestResults/
