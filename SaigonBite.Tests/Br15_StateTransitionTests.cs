@@ -70,4 +70,22 @@ public class Br15_StateTransitionTests
         Assert.Equal(OrderStatus.Delivered, order.Status);
         Assert.Single(order.StatusHistory);    // exactly one history row (FR47)
     }
+
+    [Fact(DisplayName = "S-09 an online-paid order is delivered without a cash confirmation")]
+    public void S09_online_paid_order_needs_no_cash_confirmation()
+    {
+        var order = new Order
+        {
+            Status = OrderStatus.OutForDelivery,
+            PaymentMethod = PaymentMethod.MoMo,
+            RoundedTotal = 205_000m,
+            IsCashCollected = false          // irrelevant for an online payment
+        };
+
+        var result = OrderStateMachine.Transition(order, OrderStatus.Delivered, ActorRole.Shipper);
+
+        Assert.True(result.IsAllowed);
+        Assert.Equal(OrderStatus.Delivered, order.Status);
+        Assert.Single(order.StatusHistory);
+    }
 }
