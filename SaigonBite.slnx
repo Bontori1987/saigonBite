@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="SaigonBite.Domain/SaigonBite.Domain.csproj" />
+  <Project Path="SaigonBite.Tests/SaigonBite.Tests.csproj" />
+  <Project Path="SaigonBite.Web/SaigonBite.Web.csproj" />
+</Solution>
